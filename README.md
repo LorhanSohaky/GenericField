@@ -10,27 +10,15 @@
 ### OBJETIVO
 Criar tipos genéricos de campos para utiliza-lo em conceitos como Lista, Fila e entre outros.
 
+###NOTAS:
+-A função *getFieldType* retorna 0 em caso de erro, portanto o tipo de dado nunca pode ser 0, pois ele é reservado para erros.
+
 ### COMO USAR
-`GenericField *setField(FieldType t, void *value)`: 
-	-FieldType t: Tipo de dado;
+`GenericField *setField(int t, void *value)`: 
+	-int t: Tipo de dado;
 	-void *value: Endereço de memória do valor.
 
 `int getFieldType(GenericField *f)`:
-	
-`bool *getValueBool(GenericField *f)`: 
-	-GenericField *f: Endereço de memória do GenericField.
 
-`char *getValueChar(GenericField *f)`:
-	-GenericField *f: Endereço de memória do GenericField.
-	
-`double *getValueChar(GenericField *f)`:
-	-GenericField *f: Endereço de memória do GenericField.
-	
-`float *getValueChar(GenericField *f)`:
-	-GenericField *f: Endereço de memória do GenericField.	
-	
-`int *getValueChar(GenericField *f)`:
-	-GenericField *f: Endereço de memória do GenericField.
-
-`void *getValueChar(GenericField *f)`:
+`void *getValue(GenericField *f)`:
 	-GenericField *f: Endereço de memória do GenericField.	

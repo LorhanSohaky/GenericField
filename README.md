@@ -11,26 +11,26 @@
 Criar tipos genéricos de campos para utiliza-lo em conceitos como Lista, Fila e entre outros.
 
 ### COMO USAR
-'GenericField *setField(FieldType t, void *value)': 
+`GenericField *setField(FieldType t, void *value)`: 
 	-FieldType t: Tipo de dado;
 	-void *value: Endereço de memória do valor.
 
-'int getFieldType(GenericField *f)':
+`int getFieldType(GenericField *f)`:
 	
-'bool *getValueBool(GenericField *f)': 
+`bool *getValueBool(GenericField *f)`: 
 	-GenericField *f: Endereço de memória do GenericField.
 
-'char *getValueChar(GenericField *f)':
+`char *getValueChar(GenericField *f)`:
 	-GenericField *f: Endereço de memória do GenericField.
 	
-'double *getValueChar(GenericField *f)':
+`double *getValueChar(GenericField *f)`:
 	-GenericField *f: Endereço de memória do GenericField.
 	
-'float *getValueChar(GenericField *f)':
+`float *getValueChar(GenericField *f)`:
 	-GenericField *f: Endereço de memória do GenericField.	
 	
-'int *getValueChar(GenericField *f)':
+`int *getValueChar(GenericField *f)`:
 	-GenericField *f: Endereço de memória do GenericField.
 
-'void *getValueChar(GenericField *f)':
+`void *getValueChar(GenericField *f)`:
 	-GenericField *f: Endereço de memória do GenericField.	

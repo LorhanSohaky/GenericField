@@ -1,39 +1,32 @@
+/*
+The MIT License (MIT)
+Copyright (c) 2015 Lorhan Sohaky
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 #ifndef GENERICFIELD_H
 #define GENERICFIELD_H
 #include <stdio.h>
 #include <stdbool.h>
 
-typedef union{
-    bool *b;
-	char *c;
-	double *d;
-    float *f;
-    int *i;
-    void *v;
+typedef struct _Generic_Field GenericField;
 
-} GenericValue;
-
-typedef enum{
-    BOOL=1,
-    CHAR,
-    DOUBLE,
-    FLOAT,
-    INT,
-    VOID
-} FieldType;
-
-typedef struct{
-    FieldType type;
-    GenericValue value;
-} GenericField;
-
-GenericField *setField(FieldType t, void *value);
-bool *getValueBool(GenericField *f);
-char *getValueChar(GenericField *f);
-double *getValueDouble(GenericField *f);
-float *getValueFloat(GenericField *f);
-int *getValueInt(GenericField *f);
-void *getValueVoid(GenericField *f);
+GenericField *setField(int t, void *value);
+void *getValue(GenericField *f);
 int getFieldType(GenericField *f);
 
 #endif

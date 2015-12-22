@@ -1,76 +1,48 @@
+/*
+The MIT License (MIT)
+Copyright (c) 2015 Lorhan Sohaky
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 #include <GenericField.h>
 
-GenericField *setField(FieldType t, void *value){
+struct _Generic_Field{
+    int type;
+    void *GenericValue;
+};
+
+GenericField *setField(int t, void *value){
+	if(t==0){
+		return NULL;
+	}
     GenericField *f;
     f=(GenericField *)malloc(sizeof(f));
-    if(t<BOOL || t>VOID || f==NULL){
-        return NULL;
-    }
     f->type=t;
-    switch(t){
-        case BOOL:
-            f->value.b=value;
-            break;
-        case CHAR:
-            f->value.c=value;
-            break;
-        case DOUBLE:
-            f->value.d=value;
-            break;
-        case FLOAT:
-            f->value.f=value;
-            break;
-        case INT:
-            f->value.i=value;
-            break;
-        default:
-            f->value.v=value;
-    }
+    f->GenericValue=value;
     return f;
 }
 
-bool *getValueBool(GenericField *f){
+void *getValue(GenericField *f){
     if(f!=NULL){
-        return f->value.b;
-    }
-    return NULL;
-}
-
-char *getValueChar(GenericField *f){
-    if(f!=NULL){
-        return f->value.c;
-    }
-    return NULL;
-}
-
-double *getValueDouble(GenericField *f){
-    if(f!=NULL){
-        return f->value.d;
-    }
-    return NULL;
-}
-
-float *getValueFloat(GenericField *f){
-    if(f!=NULL){
-        return f->value.f;
-    }
-    return NULL;
-}
-
-int *getValueInt(GenericField *f){
-    if(f!=NULL){
-        return f->value.i;
-    }
-    return NULL;
-}
-
-void *getValueVoid(GenericField *f){
-    if(f!=NULL){
-        return f->value.v;
+        return f->GenericValue;
     }
     return NULL;
 }
@@ -79,5 +51,5 @@ int getFieldType(GenericField *f){
     if(f!=NULL){
         return f->type;
     }
-    return -1;
+    return 0;
 }

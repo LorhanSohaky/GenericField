@@ -39,19 +39,19 @@ int main(){
     GenericField *k,*l;
 
 	x=5;
-	
+
     strcpy(a.c,"HOUSE 1");
     a.v=10;
 	l=setField(INT,&x);
     k=setField(STRUCT1,&a);
 
 	if(getFieldType(l)==1){
-		y=getValue(l);
+		y=getFieldValue(l);
 		printf("INT:%d\n",*y);
 	}
-	
+
 	if(getFieldType(k)==3){
-		b=getValue(k);
+		b=getFieldValue(k);
 		printf("T:%d  %s\n",b->v,b->c);
 	}
 	getchar();

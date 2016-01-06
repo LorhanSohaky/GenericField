@@ -18,38 +18,36 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
 #include <GenericField.h>
 
-struct _Generic_Field{
-    int type;
-    void *GenericValue;
-};
-
-GenericField *setField(int t, void *value){
-	if(t==0){
+/*Function to malloc a new GenericField*/
+GenericField *setField(const int type,void *value){
+	if(type<0){
 		return NULL;
 	}
-    GenericField *f;
-    f=(GenericField *)malloc(sizeof(f));
-    f->type=t;
-    f->GenericValue=value;
-    return f;
+    GenericField *field;
+    field=(GenericField *)malloc(sizeof(GenericField));
+	if(field==NULL){
+		return NULL;
+	}
+    field->Type=type;
+    field->Value=value;
+    return field;
 }
 
-void *getValue(GenericField *f){
-    if(f!=NULL){
-        return f->GenericValue;
+/* Function to get the value of the GenericField*/
+void *getFieldValue(const GenericField *field){
+    if(field!=NULL){
+        return field->Value;
     }
     return NULL;
 }
 
-int getFieldType(GenericField *f){
-    if(f!=NULL){
-        return f->type;
+/* Function to get a type of the GenericField*/
+int getFieldType(const GenericField *field){
+    if(field!=NULL){
+        return field->Type;
     }
-    return 0;
+    return -1;
 }

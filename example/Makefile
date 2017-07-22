@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-all:Main
+all:GenericField Main clean
 
 GenericField:../src/GenericField.c ../src/GenericField.h
 	gcc -c ../src/GenericField.c -I../src/

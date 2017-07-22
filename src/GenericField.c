@@ -21,8 +21,7 @@ SOFTWARE.
 #include "GenericField.h"
 #include <stdlib.h>
 
-/*Function to malloc a new GenericField*/
-GenericField *setField( const int type, void *value ) {
+GenericField *setField( const int type, void *value, size_t size_of_data_type ) {
     if( type < 0 ) {
         return NULL;
     }
@@ -31,12 +30,19 @@ GenericField *setField( const int type, void *value ) {
     if( field == NULL ) {
         return NULL;
     }
+
+    field->Value = malloc( size_of_data_type );
+    if( field->Value == NULL ) {
+        free( field );
+        return NULL;
+    }
+
     field->Type = type;
-    field->Value = value;
+    memcpy( field->Value, value, size_of_data_type );
+
     return field;
 }
 
-/* Function to get the value of the GenericField*/
 void *getFieldValue( const GenericField *field ) {
     if( field != NULL ) {
         return field->Value;
@@ -44,10 +50,14 @@ void *getFieldValue( const GenericField *field ) {
     return NULL;
 }
 
-/* Function to get a type of the GenericField*/
 int getFieldType( const GenericField *field ) {
     if( field != NULL ) {
         return field->Type;
     }
     return -1;
+}
+
+void freeGenericField( GenericField *field ) {
+    free( field->Value );
+    free( field );
 }

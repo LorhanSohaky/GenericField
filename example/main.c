@@ -18,42 +18,41 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#include <GenericField.h>
 #include <stdio.h>
 #include <string.h>
-#include <GenericField.h>
 
-typedef enum{
-	INT=1,
-	CHAR,
-	STRUCT1
-}type;
+typedef enum { INT = 1, CHAR, STRUCT1 } type;
 
-typedef struct{
+typedef struct {
     char c[100];
     int v;
 } T;
 
-int main(){
-	int x,*y;
-    T a,*b;
-    GenericField *k,*l;
+int main() {
+    int x, *y;
+    T a, *b;
+    GenericField *k, *l;
 
-	x=5;
+    x = 5;
 
-    strcpy(a.c,"HOUSE 1");
-    a.v=10;
-	l=setField(INT,&x);
-    k=setField(STRUCT1,&a);
+    strcpy( a.c, "HOUSE 1" );
+    a.v = 10;
+    l = setField( INT, &x, sizeof( x ) );
+    k = setField( STRUCT1, &a, sizeof( a ) );
 
-	if(getFieldType(l)==1){
-		y=getFieldValue(l);
-		printf("INT:%d\n",*y);
-	}
+    if( getFieldType( l ) == 1 ) {
+        y = getFieldValue( l );
+        printf( "INT:%d\n", *y );
+    }
 
-	if(getFieldType(k)==3){
-		b=getFieldValue(k);
-		printf("T:%d  %s\n",b->v,b->c);
-	}
-	getchar();
+    if( getFieldType( k ) == 3 ) {
+        b = getFieldValue( k );
+        printf( "T:%d  %s\n", b->v, b->c );
+    }
+
+    freeGenericField( l );
+    freeGenericField( k );
+    getchar();
     return 0;
 }

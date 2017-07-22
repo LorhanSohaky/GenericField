@@ -21,13 +21,13 @@ SOFTWARE.
 #ifndef GENERICFIELD_H
 #define GENERICFIELD_H
 
-typedef struct{
+typedef struct {
     int Type;
     void *Value;
-}GenericField;
+} GenericField;
 
-GenericField *setField(const int type,void *value);
-void *getFieldValue(const GenericField *field);
-int getFieldType(const GenericField *field);
+GenericField *setField( const int type, void *value );
+void *getFieldValue( const GenericField *field );
+int getFieldType( const GenericField *field );
 
 #endif

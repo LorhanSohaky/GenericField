@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 
-# Copyright (c) 2015 Lorhan Sohaky
+# Copyright (c) 2018 Lorhan Sohaky
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-all: main
+all: GenericField
 
-FLAGS = -Wall -I../src/ ../obj/*.o
+FLAGS = -Wall -I.
 
-main:
-	@gcc -Wall main.c $(FLAGS) -o ../bin/main
+GenericField:
+	@gcc -c GenericField.c $(FLAGS) -o ../obj/GenericField.o

@@ -23,14 +23,17 @@ SOFTWARE.
 
 #include <string.h>
 
-typedef struct {
-    int Type;
-    void *Value;
-} GenericField;
+typedef struct G GenericField;
 
-GenericField *setField( const int type, void *value, size_t size_of_data_type );
+GenericField *setField( const unsigned int type, const void *value, const size_t sizeOfDataType );
+
 void *getFieldValue( const GenericField *field );
 int getFieldType( const GenericField *field );
+
+int equalsGenericField( const GenericField *value1,
+                        const GenericField *value2,
+                        const unsigned int sizeOfDataType );
+
 void freeGenericField( GenericField *field );
 
 #endif

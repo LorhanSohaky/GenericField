@@ -21,43 +21,62 @@ SOFTWARE.
 #include "GenericField.h"
 #include <stdlib.h>
 
-GenericField *setField( const int type, void *value, size_t size_of_data_type ) {
-    if( type < 0 ) {
-        return NULL;
-    }
-    GenericField *field;
-    field = (GenericField *)malloc( sizeof( GenericField ) );
-    if( field == NULL ) {
+struct G {
+    unsigned int type;
+    void *value;
+};
+
+static int compareGenericField( const GenericField *value1,
+                                const GenericField *value2,
+                                const unsigned int sizeOfDataType );
+
+GenericField *setField( const unsigned int type, const void *value, const size_t sizeOfDataType ) {
+    GenericField *field = malloc( sizeof( GenericField ) );
+
+    if( !field ) {
         return NULL;
     }
 
-    field->Value = malloc( size_of_data_type );
-    if( field->Value == NULL ) {
+    field->value = malloc( sizeOfDataType );
+    if( !field->value ) {
         free( field );
         return NULL;
     }
 
-    field->Type = type;
-    memcpy( field->Value, value, size_of_data_type );
+    field->type = type;
+    memcpy( field->value, value, sizeOfDataType );
 
     return field;
 }
 
 void *getFieldValue( const GenericField *field ) {
     if( field != NULL ) {
-        return field->Value;
+        return field->value;
     }
     return NULL;
 }
 
 int getFieldType( const GenericField *field ) {
     if( field != NULL ) {
-        return field->Type;
+        return field->type;
     }
     return -1;
 }
 
+int equalsGenericField( const GenericField *value1,
+                        const GenericField *value2,
+                        const unsigned int sizeOfDataType ) {
+    return ( value1->type == value2->type ) &&
+        !compareGenericField( value1, value2, sizeOfDataType );
+}
+
+static int compareGenericField( const GenericField *value1,
+                                const GenericField *value2,
+                                const unsigned int sizeOfDataType ) {
+    return memcmp( value1->value, value2->value, sizeOfDataType );
+}
+
 void freeGenericField( GenericField *field ) {
-    free( field->Value );
+    free( field->value );
     free( field );
 }
